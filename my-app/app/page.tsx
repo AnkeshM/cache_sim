@@ -122,6 +122,17 @@ export default function CacheSimulatorPage() {
                 <CardDescription className="text-white">Performance metrics for each level</CardDescription>
               </CardHeader>
               <CardContent>{multiSimulator && <MultiLevelSimulationStats simulator={multiSimulator} />}</CardContent>
+              <Card className="lg:col-span-2 bg-gray-800 border-gray-700">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-purple-400">Cache Hierarchy Visualization</CardTitle>
+                <CardDescription className="text-white">Visual representation of cache levels</CardDescription>
+              </CardHeader>
+              <CardContent>
+                {multiSimulator && (
+                  <MultiLevelCacheVisualization simulator={multiSimulator} latestAccess={multiAccessHistory[0]} />
+                )}
+              </CardContent>
+            </Card>
             </Card>
           </div>
 
@@ -140,20 +151,8 @@ export default function CacheSimulatorPage() {
               </CardContent>
             </Card>
 
+            
             <Card className="lg:col-span-2 bg-gray-800 border-gray-700">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-purple-400">Cache Hierarchy Visualization</CardTitle>
-                <CardDescription className="text-white">Visual representation of cache levels</CardDescription>
-              </CardHeader>
-              <CardContent>
-                {multiSimulator && (
-                  <MultiLevelCacheVisualization simulator={multiSimulator} latestAccess={multiAccessHistory[0]} />
-                )}
-              </CardContent>
-            </Card>
-          </div>
-
-          <Card className="bg-gray-800 border-gray-700">
             <CardHeader className="pb-2">
               <CardTitle className="text-purple-400">Multi-Level Access History</CardTitle>
               <CardDescription className="text-white">Recent memory accesses through the hierarchy</CardDescription>
@@ -206,20 +205,10 @@ export default function CacheSimulatorPage() {
               </div>
             </CardContent>
           </Card>
+           
+          </div>
 
-          {/* <Card className="bg-gray-800 border-gray-700">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-purple-400">Replacement Policy Comparison</CardTitle>
-              <CardDescription className="text-white">
-                Compare the performance of different replacement policies
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ReplacementPolicyComparison
-                config={{ ...multiCacheConfig, cacheSize: multiCacheConfig.levels[0].size }}
-              />
-            </CardContent>
-          </Card> */}
+          
         </div>
       </div>
     </div>
